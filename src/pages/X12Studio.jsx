@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import StudioDemo from './StudioDemo.jsx'
 
 // Product page for the X12 Mapping Studio platform, styled with the site's
 // existing design tokens. Reached via the #/x12-studio hash route (see App.jsx).
@@ -138,6 +139,23 @@ export default function X12Studio() {
         </div>
       </section>
 
+      {/* Live demo */}
+      <section className="section">
+        <div className="container">
+          <div className="section__head reveal">
+            <span className="section__eyebrow">Live demo</span>
+            <h2 className="section__title">Watch a 270 mapping come together</h2>
+            <p className="section__lead">
+              A real eligibility inquiry, mapped field by field — source JSON on the left,
+              business concepts in the middle, the X12 wire building on the right, validating
+              to SNIP L2 as it goes. Nothing scripted in the output: it&rsquo;s the same engine
+              that serves the API.
+            </p>
+          </div>
+          <StudioDemo />
+        </div>
+      </section>
+
       {/* Pipeline */}
       <section className="section section--alt">
         <div className="container">
@@ -233,8 +251,43 @@ export default function X12Studio() {
         </div>
       </section>
 
-      {/* API */}
+      {/* More features */}
       <section className="section section--alt">
+        <div className="container">
+          <div className="section__head reveal">
+            <span className="section__eyebrow">Beyond the core loop</span>
+            <h2 className="section__title">More that the studio does</h2>
+            <p className="section__lead">
+              The map-validate-ship loop is the center of gravity, but the day-to-day work
+              of EDI lives in the details — and the studio covers them.
+            </p>
+          </div>
+
+          <div className="grid grid--3">
+            <Feature i={0} k="⚡ Auto-match" title="Alias-driven suggestions">Proposes the obvious source&nbsp;→&nbsp;concept mappings by matching field names against known aliases. You confirm the rest.</Feature>
+            <Feature i={1} k="⚙ Conditional logic" title="Segments that depend on data">Emit a segment or value only when a rule holds — situational elements handled without hand-written code.</Feature>
+            <Feature i={2} k="Envelope &amp; control" title="ISA / GS set inline">Interchange and group envelope values, control numbers, and delimiters — configured right beside the mapping.</Feature>
+            <Feature i={3} k="Revisions" title="Immutable &amp; pinnable">Every Save appends a version; callers pin one. Only revisions that pass validation can go <code>● LIVE</code> — a broken mapping can never serve traffic.</Feature>
+            <Feature i={4} k="Batch" title="Many documents, one interchange">Pass an array of documents and get one ST…SE per document in a single ISA/GS — ST02 increments, SE/GE carry the real counts.</Feature>
+            <Feature i={5} k="SNIP L1–L7" title="Dial the strictness">From element syntax to partner-pack rules — balancing, situational, and NPI / ICD-10 checks where the spec defines them.</Feature>
+          </div>
+
+          <div className="x12-more reveal">
+            <span className="x12-more__label">Also in the box</span>
+            <div className="x12-chips">
+              <span className="x12-chip">Pop-out panels</span>
+              <span className="x12-chip">Exports</span>
+              <span className="x12-chip">Base64 transport-safe</span>
+              <span className="x12-chip">Local-first storage</span>
+              <span className="x12-chip">Schema parser</span>
+              <span className="x12-chip">Golden-file tests</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* API */}
+      <section className="section">
         <div className="container">
           <div className="section__head reveal">
             <span className="section__eyebrow">API surface</span>
@@ -305,6 +358,16 @@ function Step({ i, n, title, children }) {
         <h4 className="x12-step__title">{title}</h4>
         <p className="x12-step__desc">{children}</p>
       </div>
+    </div>
+  )
+}
+
+function Feature({ i, k, title, children }) {
+  return (
+    <div className="card x12-feature reveal" style={{ '--reveal-d': `${(i % 3) * 0.08}s` }}>
+      <div className="x12-feature__k">{k}</div>
+      <h3 className="card__title">{title}</h3>
+      <p className="card__desc">{children}</p>
     </div>
   )
 }
