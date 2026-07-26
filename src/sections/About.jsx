@@ -14,18 +14,19 @@ export default function About() {
           <h2 className="section__title">A technology partner, not just a vendor</h2>
           <p>
             Triple Dynamic Solution, LLC was founded on a simple idea: small and mid-sized
-            businesses deserve enterprise-grade technology without enterprise-grade
-            complexity. We combine deep technical expertise with a genuinely
+            businesses deserve enterprise-grade technology — and enterprise-grade AI —
+            without the complexity. We pair deep technical expertise with a genuinely
             people-first approach.
           </p>
           <p>
-            Our team works as an extension of yours — learning your operations, anticipating
-            problems before they happen, and making sure technology is an advantage instead
-            of a headache.
+            Our team works as an extension of yours — learning your operations, putting AI
+            and automation to work on the routine, and anticipating problems before they
+            happen so technology is an advantage instead of a headache.
           </p>
 
           <ul className="about__values">
             <li><strong>Reliability</strong> — systems you can count on, around the clock.</li>
+            <li><strong>Innovation</strong> — modern AI applied pragmatically, never for hype.</li>
             <li><strong>Transparency</strong> — clear communication and honest pricing.</li>
             <li><strong>Partnership</strong> — your goals drive every recommendation.</li>
           </ul>

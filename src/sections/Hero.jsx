@@ -22,18 +22,18 @@ export default function Hero() {
         <div className="hero-v__intro">
           <p className="hero-v__intro-lead">
             We design, secure, and manage the technology growing companies rely on —
-            cloud infrastructure, cybersecurity, and custom software, delivered with a
-            personal touch.
+            now supercharged with AI: intelligent monitoring, automated response, and
+            custom copilots, delivered with a personal touch.
           </p>
-          <p className="hero-v__intro-stat">Trusted for 24/7 uptime &amp; security !</p>
+          <p className="hero-v__intro-stat">AI-driven uptime &amp; security, 24/7 !</p>
         </div>
 
         {/* Center hero */}
         <div className="hero-v__center">
-          <span className="hero-v__kicker">Now onboarding new clients</span>
+          <span className="hero-v__kicker">AI-powered IT · Cloud · Cybersecurity</span>
           <h1 className="hero-v__title">
             <span className="hero-v__line hero-v__line--plain">Technology that</span>
-            <span className="hero-v__line shiny-text">moves you forward.</span>
+            <span className="hero-v__line shiny-text">thinks ahead.</span>
           </h1>
           <a href="#contact" className="hero-v__cta">
             <span>Get a Free Consultation</span>

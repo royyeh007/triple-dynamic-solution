@@ -22,10 +22,11 @@ export default function Contact() {
       <div className="container contact__inner">
         <div className="contact__info">
           <span className="section__eyebrow">Get in touch</span>
-          <h2 className="section__title">Let's talk about your technology</h2>
+          <h2 className="section__title">Let's talk about your technology — and AI</h2>
           <p>
-            Tell us where you want to go and we'll map out how to get there. Schedule a
-            free, no-obligation consultation today.
+            Tell us where you want to go — including where AI could save time or open new
+            opportunities — and we'll map out how to get there. Schedule a free,
+            no-obligation consultation today.
           </p>
 
           <ul className="contact__details">

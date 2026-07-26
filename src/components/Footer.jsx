@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer__brand">
           <Logo />
           <p className="footer__tagline">
-            Modern IT services, cloud, and cybersecurity for growing businesses.
+            AI-powered IT services, cloud, and cybersecurity for growing businesses.
           </p>
         </div>
 
@@ -22,6 +22,7 @@ export default function Footer() {
 
         <div className="footer__col">
           <h4>Services</h4>
+          <a href="#services">AI &amp; Automation</a>
           <a href="#services">Managed IT</a>
           <a href="#services">Cloud Solutions</a>
           <a href="#services">Cybersecurity</a>

@@ -1,11 +1,15 @@
 const reasons = [
   {
     title: 'Fast, human response',
-    desc: 'Real engineers, not phone trees. Most support requests are acknowledged in minutes.',
+    desc: 'Real engineers, not phone trees — with AI triage that routes and resolves the routine instantly, so people focus on what matters.',
+  },
+  {
+    title: 'AI where it counts',
+    desc: 'We apply AI where it delivers real ROI — automation, insight, and support — and skip the hype where it doesn’t.',
   },
   {
     title: 'Security-first mindset',
-    desc: 'Every solution we deliver is built with security and compliance baked in from day one.',
+    desc: 'AI-driven threat detection and compliance are baked into every solution we deliver, from day one.',
   },
   {
     title: 'Predictable pricing',
@@ -15,6 +19,10 @@ const reasons = [
     title: 'Scales with you',
     desc: 'From your first hire to your next office, our solutions grow alongside your business.',
   },
+  {
+    title: 'Future-ready',
+    desc: 'We keep your stack ready for what’s next, so adopting new AI capabilities is a step — not a rebuild.',
+  },
 ]
 
 export default function WhyUs() {
@@ -23,7 +31,7 @@ export default function WhyUs() {
       <div className="container">
         <div className="section__head">
           <span className="section__eyebrow">Why Triple Dynamic</span>
-          <h2 className="section__title">Businesses choose us because we deliver</h2>
+          <h2 className="section__title">Businesses choose us because we deliver — intelligently</h2>
         </div>
 
         <div className="grid grid--2">
