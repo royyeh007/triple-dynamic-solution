@@ -31,7 +31,6 @@ export default function Contact() {
 
           <ul className="contact__details">
             <li><strong>Email</strong><a href="mailto:hello@tdsolve.com">hello@tdsolve.com</a></li>
-            <li><strong>Phone</strong><a href="tel:+10000000000">(000) 000-0000</a></li>
             <li><strong>Hours</strong><span>Monday – Friday, 9:00am – 6:00pm</span></li>
           </ul>
         </div>

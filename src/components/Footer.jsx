@@ -32,7 +32,6 @@ export default function Footer() {
         <div className="footer__col">
           <h4>Get in touch</h4>
           <a href="mailto:hello@tdsolve.com">hello@tdsolve.com</a>
-          <a href="tel:+10000000000">(000) 000-0000</a>
           <span className="footer__muted">Mon–Fri, 9am–6pm</span>
         </div>
       </div>
