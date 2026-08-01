@@ -332,6 +332,7 @@ export default function X12Studio() {
               <span className="p"># →</span> <span className="a">http://localhost:3000</span>  studio + API, same origin
             </div>
             <a href="#contact" className="btn btn--primary">Talk to us about EDI</a>
+            <a href="#/x12-license" className="btn">Existing customer? Generate your license →</a>
           </div>
         </div>
       </section>
