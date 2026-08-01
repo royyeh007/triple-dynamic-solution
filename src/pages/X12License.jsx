@@ -100,14 +100,6 @@ export default function X12License() {
             Non-production (staging / dev)
           </label>
         </div>
-        {environment === 'non-production' && (
-          <div className="hint">
-            Non-production licenses are free companions: the full product, but every interchange it
-            generates is marked <code>ISA15=T</code> (test data) — exactly what partner test regions
-            expect, and what their production regions refuse.
-          </div>
-        )}
-
         {error && <div className="err">{error}</div>}
 
         <div style={{ marginTop: 18 }}>
@@ -127,6 +119,16 @@ export default function X12License() {
             <li><b>Upload…</b> the file (or paste its contents) → <b>Install license</b>.</li>
             <li>It takes effect immediately — no restart.</li>
           </ol>
+          {issued.slots && (
+            <div className="hint" style={{ marginTop: 10 }}>
+              <b>
+                {issued.slots.remaining} of {issued.slots.cap}
+              </b>{' '}
+              {issued.environment === 'non-production' ? 'non-production' : 'production'} instance
+              slot{issued.slots.cap === 1 ? '' : 's'} left on your account
+              {issued.slots.remaining === 0 ? ' — contact us if you need more' : ''}.
+            </div>
+          )}
           <div className="hint">
             Wrong file or lost it? Run this form again with the same Instance ID — re-issuing for an
             instance you already licensed is always allowed.
