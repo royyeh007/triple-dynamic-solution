@@ -12,6 +12,7 @@ export default function X12License() {
   const [environment, setEnvironment] = useState('production')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState(null)
+  const [errorInstances, setErrorInstances] = useState(null)
   const [issued, setIssued] = useState(null)
 
   const ready = companyCode.trim() !== '' && instanceId.trim() !== ''
@@ -19,6 +20,7 @@ export default function X12License() {
   const generate = async () => {
     setBusy(true)
     setError(null)
+    setErrorInstances(null)
     setIssued(null)
     try {
       const r = await fetch(ISSUE_URL, {
@@ -29,6 +31,9 @@ export default function X12License() {
       const body = await r.json().catch(() => ({}))
       if (!r.ok) {
         setError(body.error || 'The issuing service is unavailable — try again shortly')
+        // A cap refusal names the instances holding the slots, so "that's
+        // our old QA box, please free it" is a one-line email.
+        if (Array.isArray(body.instances)) setErrorInstances(body.instances)
         return
       }
       setIssued(body)
@@ -100,7 +105,22 @@ export default function X12License() {
             Non-production (staging / dev)
           </label>
         </div>
-        {error && <div className="err">{error}</div>}
+        {error && (
+          <div className="err">
+            {error}
+            {errorInstances && (
+              <div style={{ marginTop: 8, fontSize: '.82rem' }}>
+                Instances currently using your slots:
+                <ul style={{ margin: '5px 0 0', paddingLeft: 18 }}>
+                  {errorInstances.map((id) => (
+                    <li key={id}><code>{id}</code></li>
+                  ))}
+                </ul>
+                If one of these is a retired deployment, tell us which — we'll free the slot.
+              </div>
+            )}
+          </div>
+        )}
 
         <div style={{ marginTop: 18 }}>
           <button className="btn btn--primary" disabled={!ready || busy} onClick={generate}>
