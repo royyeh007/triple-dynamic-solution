@@ -74,9 +74,11 @@ export default function X12License() {
 
       <h1>Generate your X12 Studio license</h1>
       <p className="lead">
-        For existing customers. You need two things: the <b>company code</b> from your onboarding
-        email, and the <b>Instance ID</b> shown on your container's <b>Licensing</b> screen (it has
-        a Copy button). The license is issued bound to that instance and recorded with your account.
+        For existing customers — first licenses and <b>renewals</b> alike. You need two things: the{' '}
+        <b>company code</b> from your onboarding email, and the <b>Instance ID</b> shown on your
+        container's <b>Licensing</b> screen (it has a Copy button). The license is issued bound to
+        that instance and recorded with your account. Renewing? Same form, same Instance ID — once
+        your term has been extended, the new file simply carries the later expiry.
       </p>
 
       <div className="card">
