@@ -6,6 +6,32 @@ import { useState } from 'react'
 // the vendor's issuing service — no key material ever reaches this page.
 const ISSUE_URL = 'https://ykzolgkulvrhhncouylk.supabase.co/functions/v1/self-license'
 
+// Info icon beside a field label; reveals a "what it is / where to get it"
+// popover on hover, keyboard focus, or tap.
+function InfoTip({ label, children }) {
+  const [open, setOpen] = useState(false)
+  return (
+    <span
+      className="tip"
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+    >
+      <button
+        type="button"
+        className="tip__btn"
+        aria-label={`About ${label}`}
+        aria-expanded={open}
+        onClick={() => setOpen((o) => !o)}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setOpen(false)}
+      >
+        i
+      </button>
+      {open && <span role="tooltip" className="tip__pop">{children}</span>}
+    </span>
+  )
+}
+
 export default function X12License() {
   const [companyCode, setCompanyCode] = useState('')
   const [instanceId, setInstanceId] = useState('')
@@ -70,6 +96,14 @@ export default function X12License() {
         .x12lic .btn--primary[disabled] { opacity: .5; cursor: default; }
         .x12lic ol { line-height: 1.7; }
         .x12lic code { font-family: var(--mono); font-size: .88em; }
+        .x12lic .field-label { display: flex; align-items: center; gap: 6px; margin: 14px 0 5px; }
+        .x12lic .field-label label { margin: 0; }
+        .x12lic .tip { position: relative; display: inline-flex; }
+        .x12lic .tip__btn { width: 16px; height: 16px; border-radius: 50%; border: 1px solid var(--line, rgba(255,255,255,.35)); background: transparent; color: var(--muted); font: italic 700 11px/1 Georgia, 'Times New Roman', serif; cursor: pointer; display: inline-grid; place-items: center; padding: 0; transition: color .15s ease, border-color .15s ease; }
+        .x12lic .tip__btn:hover, .x12lic .tip__btn:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+        .x12lic .tip__pop { position: absolute; top: 24px; left: -2px; width: 260px; max-width: 72vw; background: var(--surface, #131c30); border: 1px solid var(--line, rgba(255,255,255,.18)); border-radius: 10px; padding: 11px 13px; font: 400 .8rem/1.5 inherit; color: var(--muted); box-shadow: 0 14px 34px -14px rgba(0,0,0,.65); z-index: 20; }
+        .x12lic .tip__pop b { color: var(--text); font-weight: 600; }
+        .x12lic .tip__pop code { font-family: var(--mono); font-size: .85em; }
       `}</style>
 
       <h1>Generate your X12 Studio license</h1>
@@ -82,19 +116,36 @@ export default function X12License() {
       </p>
 
       <div className="card">
-        <label htmlFor="lic-code">Company code</label>
+        <div className="field-label">
+          <label htmlFor="lic-code">Company code</label>
+          <InfoTip label="Company code">
+            <b>What it is:</b> your account identifier, issued when your account is set up.{' '}
+            <b>Where to get it:</b> in your onboarding email from Triple Dynamic Solution — it looks
+            like <code>TDS-1A2B3C4D</code>.
+          </InfoTip>
+        </div>
         <input id="lic-code" type="text" placeholder="TDS-1A2B3C4D" value={companyCode}
           onChange={(e) => setCompanyCode(e.target.value)} autoComplete="off" />
 
-        <label htmlFor="lic-instance">Instance ID</label>
+        <div className="field-label">
+          <label htmlFor="lic-instance">Instance ID</label>
+          <InfoTip label="Instance ID">
+            <b>What it is:</b> a unique ID for this deployment. Each deployment has its own — issue
+            one license per deployment.{' '}
+            <b>Where to get it:</b> in the studio, <b>Licensing → Instance ID → Copy</b>.
+          </InfoTip>
+        </div>
         <input id="lic-instance" type="text" placeholder="1d78b0ce-4252-48c9-b19c-eb91acf3a427"
           value={instanceId} onChange={(e) => setInstanceId(e.target.value)} autoComplete="off" />
-        <div className="hint">
-          In the studio: <b>Licensing → Instance ID → Copy</b>. Each deployment has its own — issue
-          one license per deployment.
-        </div>
 
-        <label>Environment</label>
+        <div className="field-label">
+          <label>Environment</label>
+          <InfoTip label="Environment">
+            <b>What it is:</b> which slot pool the license draws from. Pick <b>Non-production</b> for
+            staging or dev deployments and <b>Production</b> for live systems.{' '}
+            <b>Where:</b> choose based on how this deployment is used.
+          </InfoTip>
+        </div>
         <div className="env">
           <label>
             <input type="radio" name="env" checked={environment === 'production'}
