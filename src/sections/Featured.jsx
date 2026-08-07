@@ -7,19 +7,19 @@ export default function Featured() {
           <div className="featured__glow" aria-hidden="true" />
 
           <div className="featured__body">
-            <span className="section__eyebrow">Featured platform</span>
-            <h2 className="featured__title">X12 Mapping Studio</h2>
+            <span className="section__eyebrow">Our EDI engine</span>
+            <h2 className="featured__title">X12 Translation Engine</h2>
             <p className="featured__lead">
-              Self-hosted X12 EDI translation, driven by visual mapping instead of code.
-              A live wire preview that&rsquo;s byte-identical to production — shipped as a
-              single container, with zero external requests.
+              A pure, self-hosted X12 engine: 33 transaction sets as data, SNIP compliance
+              built in, and byte-identical output every time. A visual studio and one-call
+              API come along to drive it — all in a single container, zero external requests.
             </p>
             <div className="featured__stats">
               <div><strong>33</strong><span>transaction sets</span></div>
               <div><strong>L1–L7</strong><span>SNIP validation</span></div>
               <div><strong>0</strong><span>external requests</span></div>
             </div>
-            <span className="btn btn--primary featured__cta">Explore X12 Studio →</span>
+            <span className="btn btn--primary featured__cta">Explore the X12 engine →</span>
           </div>
 
           <div className="featured__wire" aria-hidden="true">

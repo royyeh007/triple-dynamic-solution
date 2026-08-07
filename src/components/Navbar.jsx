@@ -5,7 +5,7 @@ const links = [
   { href: '#services', label: 'Services' },
   { href: '#about', label: 'About' },
   { href: '#why', label: 'Why Us' },
-  { href: '#/x12-studio', label: 'X12 Studio' },
+  { href: '#/x12-studio', label: 'X12 Engine' },
   { href: '#contact', label: 'Contact' },
 ]
 

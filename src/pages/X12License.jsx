@@ -83,6 +83,8 @@ export default function X12License() {
     <main className="x12 x12lic">
       <style>{`
         .x12lic { max-width: 640px; margin: 0 auto; padding: 140px 20px 80px; }
+        .x12lic .back { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: .85rem; margin-bottom: 16px; transition: color .15s ease; }
+        .x12lic .back:hover { color: var(--accent); }
         .x12lic h1 { font-size: 2rem; margin: 0 0 8px; }
         .x12lic .lead { color: var(--muted); line-height: 1.65; }
         .x12lic .card { background: var(--surface, rgba(255,255,255,.04)); border: 1px solid var(--line, rgba(255,255,255,.12)); border-radius: 14px; padding: 22px; margin-top: 22px; }
@@ -106,7 +108,8 @@ export default function X12License() {
         .x12lic .tip__pop code { font-family: var(--mono); font-size: .85em; }
       `}</style>
 
-      <h1>Generate your X12 Studio license</h1>
+      <a className="back" href="#/x12-studio">← Back to X12 Engine</a>
+      <h1>Generate your X12 Engine license</h1>
       <p className="lead">
         For existing customers — first licenses and <b>renewals</b> alike. You need two things: the{' '}
         <b>company code</b> from your onboarding email, and the <b>Instance ID</b> shown on your

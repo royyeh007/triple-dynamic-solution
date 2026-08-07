@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import StudioDemo from './StudioDemo.jsx'
 
-// Product page for the X12 Mapping Studio platform, styled with the site's
-// existing design tokens. Reached via the #/x12-studio hash route (see App.jsx).
+// Product page for the self-hosted X12 translation engine (@x12/core). The
+// engine is the focal point; the mapping studio and translate API are the
+// tooling that drives it. Reached via the #/x12-studio hash route (App.jsx).
 const scrollTo = (id) => (e) => {
   e.preventDefault()
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -95,25 +96,24 @@ export default function X12Studio() {
 
   return (
     <main className="x12">
-      {/* Hero */}
+      {/* Hero — the engine */}
       <section className="section x12-hero">
         <div className="container x12-hero__grid">
           <div className="x12-hero__copy reveal">
-            <span className="section__eyebrow">Platform · Self-hosted X12 EDI</span>
+            <span className="section__eyebrow">Self-hosted X12 translation engine</span>
             <h1 className="x12-hero__title">
               See the exact wire <span className="accent x12-shine">before</span> you ship it.
             </h1>
             <p className="x12-hero__lead">
-              X12 Mapping Studio turns EDI integration into visual mapping instead of
-              code. Analysts map any JSON document to X12 through business concepts —
-              “Subscriber,” “PO number” — with a live wire preview. Your applications
-              call one endpoint and get <strong>byte-identical</strong> output. No PHI
-              leaves your network; zero external requests at runtime.
+              At its core is a pure, deterministic X12 engine: <strong>33 transaction sets</strong> as
+              data, SNIP L1–L7 compliance built in, and <strong>byte-identical</strong> output every
+              time. A visual mapping studio and a one-call API come along to drive it — but the engine
+              is the product, and it runs entirely inside your network.
             </p>
             <div className="x12-hero__cta">
               <a href="#contact" className="btn btn--primary">Request a demo</a>
-              <a href="#x12-flow" className="btn btn--ghost" onClick={scrollTo('x12-flow')}>
-                See the workflow
+              <a href="#x12-engine" className="btn btn--ghost" onClick={scrollTo('x12-engine')}>
+                How the engine works
               </a>
             </div>
           </div>
@@ -124,7 +124,7 @@ export default function X12Studio() {
               <span className="x12-wire__dot" />
               <span className="x12-wire__dot" />
               <span className="x12-wire__dot" />
-              <span className="x12-wire__label">wire preview · 270 eligibility · 005010X279A1</span>
+              <span className="x12-wire__label">engine output · 270 eligibility · 005010X279A1</span>
               <span className="x12-wire__pass">✓ passes SNIP L2</span>
             </div>
             <div className="x12-wire__body">
@@ -139,17 +139,72 @@ export default function X12Studio() {
         </div>
       </section>
 
-      {/* Live demo */}
-      <section className="section">
+      {/* THE ENGINE — the focal point */}
+      <section className="section section--alt" id="x12-engine">
         <div className="container">
           <div className="section__head reveal">
-            <span className="section__eyebrow">Live demo</span>
-            <h2 className="section__title">Watch a 270 mapping come together</h2>
+            <span className="section__eyebrow">The engine · @x12/core</span>
+            <h2 className="section__title">One pure engine — the preview and production run the same code</h2>
             <p className="section__lead">
-              A real eligibility inquiry, mapped field by field — source JSON on the left,
-              business concepts in the middle, the X12 wire building on the right, validating
-              to SNIP L2 as it goes. Nothing scripted in the output: it&rsquo;s the same engine
-              that serves the API.
+              Everything else sits on a single translation engine with no React and no I/O. That&rsquo;s
+              what makes the guarantees hold — and it&rsquo;s what you&rsquo;re really buying.
+            </p>
+          </div>
+          <div className="grid grid--2">
+            <Principle i={0} k="Deterministic" title="Byte-identical, every time">The studio preview and <code>POST /api/translate</code> execute the same pure <strong>@x12/core</strong> — what you validate is exactly what ships. No “works in the tool, breaks in prod.”</Principle>
+            <Principle i={1} k="Spec is data" title="33 sets, typed as data">Rules, code sets, docs, and wire templates are data — adding a transaction set is a data file, not code. Every spec is golden-file tested byte-for-byte.</Principle>
+            <Principle i={2} k="Compliance built in" title="SNIP L1–L7 validation">Element syntax through partner-pack rules — balancing, situational, and NPI / ICD-10 checks — enforced by the engine. A mapping that fails can never serve traffic.</Principle>
+            <Principle i={3} k="Pure & air-gapped" title="No I/O, zero external calls">The engine makes no network requests; PHI never leaves your box. Fonts bundled locally, no CDNs, no analytics.</Principle>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats — engine substance */}
+      <section className="section">
+        <div className="container x12-stats">
+          <div className="x12-stat reveal"><div className="x12-stat__n"><CountUp end={33} /></div><div className="x12-stat__l"><strong>Transaction sets</strong> installed, healthcare through finance</div></div>
+          <div className="x12-stat reveal" style={{ '--reveal-d': '0.08s' }}><div className="x12-stat__n">L1–L7</div><div className="x12-stat__l"><strong>SNIP validation levels</strong> — syntax through partner-pack rules</div></div>
+          <div className="x12-stat reveal" style={{ '--reveal-d': '0.16s' }}><div className="x12-stat__n"><CountUp end={0} /></div><div className="x12-stat__l"><strong>External requests</strong> at runtime — air-gapped posture</div></div>
+          <div className="x12-stat reveal" style={{ '--reveal-d': '0.24s' }}><div className="x12-stat__n"><CountUp end={1} /></div><div className="x12-stat__l"><strong>Docker container</strong> — engine, studio &amp; API, same origin</div></div>
+        </div>
+      </section>
+
+      {/* Coverage — engine */}
+      <section className="section section--alt">
+        <div className="container">
+          <div className="section__head reveal">
+            <span className="section__eyebrow">Installed coverage</span>
+            <h2 className="section__title">33 transaction sets — adding one is a data file, not code</h2>
+            <p className="section__lead">
+              All X12 knowledge — rules, code sets, docs, wire templates — lives as typed
+              data in the engine. Every spec has golden-file tests comparing the full pipeline
+              byte-for-byte.
+            </p>
+          </div>
+
+          <div className="x12-cov">
+            <CovGroup i={0} title="Healthcare" sub="eligibility · claims · enrollment" codes={['270/271','276/277','278','834','835','837P','837I','837D']} />
+            <CovGroup i={1} title="Supply chain" sub="orders · ship · invoice" codes={['850','855','856','860','810','832','846','852']} />
+            <CovGroup i={2} title="Warehouse" sub="shipping · receipt · stock" codes={['940','945','944']} />
+            <CovGroup i={3} title="Transportation" sub="load tender · status" codes={['204','990','214','210']} />
+            <CovGroup i={4} title="Finance" sub="payment order · remittance" codes={['820','823','824']} />
+            <CovGroup i={5} title="And more" sub="planning · acknowledgements" codes={['811','830','862','867','997']} />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Secondary: the tooling that drives the engine ── */}
+
+      {/* Studio demo */}
+      <section className="section" id="x12-demo">
+        <div className="container">
+          <div className="section__head reveal">
+            <span className="section__eyebrow">Included tooling · the studio</span>
+            <h2 className="section__title">A visual studio to drive the engine</h2>
+            <p className="section__lead">
+              Nobody hand-writes X12. The mapping studio is how analysts feed the engine — here&rsquo;s
+              a real 270 eligibility inquiry, mapped field by field, validating to SNIP L2 as the wire
+              builds. It&rsquo;s the same engine underneath, so the preview is the output.
             </p>
           </div>
           <StudioDemo />
@@ -160,7 +215,7 @@ export default function X12Studio() {
       <section className="section section--alt">
         <div className="container">
           <div className="section__head reveal">
-            <span className="section__eyebrow">The studio</span>
+            <span className="section__eyebrow">Inside the studio</span>
             <h2 className="section__title">Source flows through concepts to the wire</h2>
             <p className="section__lead">
               Map by meaning, not by segment coordinates. Arrays of line items map
@@ -194,40 +249,6 @@ export default function X12Studio() {
             same pure <strong>@x12/core</strong> engine — the preview is byte-identical to
             production output. No “works in the tool, breaks in prod.”
           </p>
-        </div>
-      </section>
-
-      {/* Stats */}
-      <section className="section">
-        <div className="container x12-stats">
-          <div className="x12-stat reveal"><div className="x12-stat__n"><CountUp end={33} /></div><div className="x12-stat__l"><strong>Transaction sets</strong> installed, healthcare through finance</div></div>
-          <div className="x12-stat reveal" style={{ '--reveal-d': '0.08s' }}><div className="x12-stat__n">L1–L7</div><div className="x12-stat__l"><strong>SNIP validation levels</strong> — syntax through partner-pack rules</div></div>
-          <div className="x12-stat reveal" style={{ '--reveal-d': '0.16s' }}><div className="x12-stat__n"><CountUp end={0} /></div><div className="x12-stat__l"><strong>External requests</strong> at runtime — air-gapped posture</div></div>
-          <div className="x12-stat reveal" style={{ '--reveal-d': '0.24s' }}><div className="x12-stat__n"><CountUp end={1} /></div><div className="x12-stat__l"><strong>Docker container</strong> — studio UI + API, same origin</div></div>
-        </div>
-      </section>
-
-      {/* Coverage */}
-      <section className="section section--alt">
-        <div className="container">
-          <div className="section__head reveal">
-            <span className="section__eyebrow">Installed coverage</span>
-            <h2 className="section__title">33 transaction sets — adding one is a data file, not code</h2>
-            <p className="section__lead">
-              All X12 knowledge — rules, code sets, docs, wire templates — lives as typed
-              data. Every spec has golden-file tests comparing the full pipeline
-              byte-for-byte.
-            </p>
-          </div>
-
-          <div className="x12-cov">
-            <CovGroup i={0} title="Healthcare" sub="eligibility · claims · enrollment" codes={['270/271','276/277','278','834','835','837P','837I','837D']} />
-            <CovGroup i={1} title="Supply chain" sub="orders · ship · invoice" codes={['850','855','856','860','810','832','846','852']} />
-            <CovGroup i={2} title="Warehouse" sub="shipping · receipt · stock" codes={['940','945','944']} />
-            <CovGroup i={3} title="Transportation" sub="load tender · status" codes={['204','990','214','210']} />
-            <CovGroup i={4} title="Finance" sub="payment order · remittance" codes={['820','823','824']} />
-            <CovGroup i={5} title="And more" sub="planning · acknowledgements" codes={['811','830','862','867','997']} />
-          </div>
         </div>
       </section>
 
@@ -290,9 +311,9 @@ export default function X12Studio() {
       <section className="section">
         <div className="container">
           <div className="section__head reveal">
-            <span className="section__eyebrow">API surface</span>
+            <span className="section__eyebrow">The API</span>
             <h2 className="section__title">One endpoint to translate; a small, honest CRUD around it</h2>
-            <p className="section__lead">Immutable revisions in SQLite via <strong>node:sqlite</strong> — no native deps. One process, one origin, serves the built UI too.</p>
+            <p className="section__lead">The same engine behind an HTTP call. Immutable revisions in SQLite via <strong>node:sqlite</strong> — no native deps. One process, one origin, serves the built UI too.</p>
           </div>
 
           <div className="x12-tablewrap reveal">
@@ -311,28 +332,22 @@ export default function X12Studio() {
         </div>
       </section>
 
-      {/* Principles */}
-      <section className="section">
+      {/* Run / CTA */}
+      <section className="section section--alt">
         <div className="container">
           <div className="section__head reveal">
-            <span className="section__eyebrow">Architecture rules</span>
-            <h2 className="section__title">Four rules that make the guarantees hold</h2>
-          </div>
-          <div className="grid grid--2">
-            <Principle i={0} k="Spec is data" title="Adding a set is a data file">Rules, code sets, docs, and wire templates are typed data — never imperative code.</Principle>
-            <Principle i={1} k="Engine is pure" title="No React, no I/O">The core engine is shared by UI and API alike — which is what guarantees preview ≡ production output.</Principle>
-            <Principle i={2} k="Revisions immutable" title="Save appends, never rewrites">Callers pin a revision, so editing a mapping can never silently change what production emits.</Principle>
-            <Principle i={3} k="Zero external requests" title="Air-gapped by construction">Fonts bundled locally; no CDNs, no analytics. PHI never leaves your network.</Principle>
+            <span className="section__eyebrow">Run it</span>
+            <h2 className="section__title">One container — the engine, a studio, and the API, same origin</h2>
           </div>
 
           <div className="x12-run reveal">
             <div className="x12-run__cmd">
               <span className="p">$</span> docker build -t x12-platform <span className="a">.</span>{'\n'}
               <span className="p">$</span> docker run -p 3000:3000 -v x12data:/data x12-platform{'\n'}
-              <span className="p"># →</span> <span className="a">http://localhost:3000</span>  studio + API, same origin
+              <span className="p"># →</span> <span className="a">http://localhost:3000</span>  engine + studio + API
             </div>
             <a href="#contact" className="btn btn--primary">Talk to us about EDI</a>
-            <a href="#/x12-license" className="btn">Existing customer? Generate your license →</a>
+            <a href="#/x12-license" className="btn btn--ghost">Existing customer? Generate your license →</a>
           </div>
         </div>
       </section>
