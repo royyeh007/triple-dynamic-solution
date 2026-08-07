@@ -23,7 +23,7 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'navbar--scrolled' : ''}`}>
       <div className="container navbar__inner">
-        <a href="#home" className="navbar__brand" aria-label="Triple Dynamic Solution home">
+        <a href="#home" className="navbar__brand" aria-label="Triple Dynamic Solutions home">
           <Logo />
         </a>
 

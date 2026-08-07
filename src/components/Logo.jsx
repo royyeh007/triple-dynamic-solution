@@ -9,7 +9,7 @@ export default function Logo({ showText = true }) {
         width="36"
         height="36"
         role="img"
-        aria-label="Triple Dynamic Solution"
+        aria-label="Triple Dynamic Solutions"
       >
         <defs>
           <linearGradient id="logoGradient" x1="0" y1="0" x2="1" y2="1">
@@ -24,7 +24,7 @@ export default function Logo({ showText = true }) {
       </svg>
       {showText && (
         <span className="logo__text">
-          Triple Dynamic<span className="logo__text-accent"> Solution</span>
+          Triple Dynamic<span className="logo__text-accent"> Solutions</span>
         </span>
       )}
     </span>

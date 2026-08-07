@@ -1,6 +1,6 @@
-# Triple Dynamic Solution, LLC — Website
+# Triple Dynamic Solutions, LLC — Website
 
-Marketing site for Triple Dynamic Solution, LLC. Built with **React + Vite**, deployed to
+Marketing site for Triple Dynamic Solutions, LLC. Built with **React + Vite**, deployed to
 **GitHub Pages**, served from the custom domain **[tdsolve.com](https://tdsolve.com)**.
 
 ## Tech stack

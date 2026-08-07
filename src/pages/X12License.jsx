@@ -123,7 +123,7 @@ export default function X12License() {
           <label htmlFor="lic-code">Company code</label>
           <InfoTip label="Company code">
             <b>What it is:</b> your account identifier, issued when your account is set up.{' '}
-            <b>Where to get it:</b> in your onboarding email from Triple Dynamic Solution — it looks
+            <b>Where to get it:</b> in your onboarding email from Triple Dynamic Solutions — it looks
             like <code>TDS-1A2B3C4D</code>.
           </InfoTip>
         </div>

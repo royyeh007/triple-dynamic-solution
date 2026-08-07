@@ -13,7 +13,7 @@ export default function About() {
           <span className="section__eyebrow">About us</span>
           <h2 className="section__title">A technology partner, not just a vendor</h2>
           <p>
-            Triple Dynamic Solution, LLC was founded on a simple idea: small and mid-sized
+            Triple Dynamic Solutions, LLC was founded on a simple idea: small and mid-sized
             businesses deserve enterprise-grade technology — and enterprise-grade AI —
             without the complexity. We pair deep technical expertise with a genuinely
             people-first approach.

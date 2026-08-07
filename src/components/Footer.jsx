@@ -37,7 +37,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bottom">
-        <span>© {year} Triple Dynamic Solution, LLC. All rights reserved.</span>
+        <span>© {year} Triple Dynamic Solutions, LLC. All rights reserved.</span>
         <span className="footer__muted">tdsolve.com</span>
       </div>
     </footer>
