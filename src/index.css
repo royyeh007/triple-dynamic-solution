@@ -614,6 +614,8 @@ img, svg { display: block; }
   border-radius: 0 8px 8px 0;
 }
 .x12-note strong { color: var(--text); font-weight: 600; }
+.x12-note a, .x12-note a strong { color: var(--accent); transition: color 0.15s ease; }
+.x12-note a:hover, .x12-note a:hover strong { color: var(--text); }
 
 /* Stats */
 .x12-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }

@@ -10,6 +10,7 @@ import WhyUs from './sections/WhyUs.jsx'
 import Contact from './sections/Contact.jsx'
 import X12Studio from './pages/X12Studio.jsx'
 import X12License from './pages/X12License.jsx'
+import X12Paper from './pages/X12Paper.jsx'
 
 // Minimal dependency-free hash routing. Page routes use a "#/" prefix
 // (e.g. #/x12-studio); plain "#section" hashes stay in-page scroll anchors.
@@ -25,19 +26,21 @@ function useHashRoute() {
 
 export default function App() {
   const hash = useHashRoute()
-  // #/x12-license is its own page; every other #/x12… hash is the studio.
+  // #/x12-license and #/x12-paper are their own pages; every other #/x12…
+  // hash is the studio.
   const isLicense = hash.startsWith('#/x12-license')
-  const isStudio = !isLicense && hash.startsWith('#/x12')
+  const isPaper = hash.startsWith('#/x12-paper')
+  const isStudio = !isLicense && !isPaper && hash.startsWith('#/x12')
 
   // Reset to top when entering a page route; smooth-scroll to a section anchor
   // when returning to the home page via a "#section" link from another page.
   useEffect(() => {
-    if (isStudio || isLicense) {
+    if (isStudio || isLicense || isPaper) {
       window.scrollTo(0, 0)
     } else if (hash && !hash.startsWith('#/')) {
       document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [hash, isStudio, isLicense])
+  }, [hash, isStudio, isLicense, isPaper])
 
   return (
     <>
@@ -45,6 +48,8 @@ export default function App() {
       <Navbar />
       {isLicense ? (
         <X12License />
+      ) : isPaper ? (
+        <X12Paper />
       ) : isStudio ? (
         <X12Studio />
       ) : (
